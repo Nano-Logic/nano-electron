@@ -1,6 +1,6 @@
 # Electron Framework VERSION 2.0
 - The Following project has been created and is currently owned by the Ms, INC and its following subsection NanoLogic.
-  Any attempts to make copy of the following codes, reproduce or publish without correct authorization by its handlers will result in ©copyright.
+  Any attempts to reproduce or publish without correct authorization by its handlers will result in ©copyright.
   The Electron Framework is property of NanoLogic and its subsidiaries, must purpose for modification is allowed as its own custom regeneration of elements.
 
 Private Repository for Experimenting Reasons &amp; Useful copied code to not be shared outside collab members.
@@ -24,3 +24,13 @@ Private Repository for Experimenting Reasons &amp; Useful copied code to not be 
 
 # Latest stable Framework
 > Ms, INC. All rights reserved 2019™
+
+# nanojs
+Nanojs start template &amp; documentation
+
+## Start
+- http://fire.isjan.de/nano/0.3/nano.js
+
+## Documentation
+- [nanojs](http://fire.isjan.de/nanojs)
+
