@@ -14,7 +14,6 @@ const {
     app,
     BrowserWindow,
     Menu,
-    ipcMain
 } = electron;
 
 const defaultTemplate = (mainWindow) => [{
@@ -52,11 +51,12 @@ const defaultTemplate = (mainWindow) => [{
  */
 
 class ElectronWindow {
-    constructor(width, height, mainWindowUrl, menuTemplate) {
+    constructor(width, height, mainWindowUrl, menuTemplate, maximized) {
         this.width = width;
         this.height = height;
         this.mainWindowUrl = mainWindowUrl;
         this.menuTemplate = menuTemplate || null;
+        this.maximized = maximized || false;
 
         this.mainWindow = null;
     }
@@ -71,14 +71,46 @@ class ElectronWindow {
             // fullscreen: true
         });
 
+        if (this.maximized === true) {
+            this.mainWindow.maximize();
+        }
+
         this.mainWindow.loadFile(this.mainWindowUrl);
-        this.loadTemplate(defaultTemplate(this.mainWindow));
+    }
+
+    maximize() {
+        this.mainWindow.maximize();
     }
 
     loadTemplate(template) {
         this.menuTemplate = template;
-        var MainMenu = Menu.buildFromTemplate(this.menuTemplate);
-        Menu.setApplicationMenu(MainMenu);
+        var TemplateMenu = Menu.buildFromTemplate(this.menuTemplate);
+        this.mainWindow.setMenu(TemplateMenu);
+    }
+
+    defaultTemplate(mainWindow) {
+        return [{
+            label: "Tools",
+            submenu: [{
+                    label: "Quit",
+                    accelerator: process.platform == 'darwin' ? 'Command+Q' : 'Ctrl+Q',
+                    click() {
+                        app.quit();
+                    }
+                },
+                {
+                    label: 'Reload',
+                    role: 'reload'
+                },
+                {
+                    label: "Dev",
+                    accelerator: process.platform == 'darwin' ? 'Command+Shift+I' : 'Ctrl+Shift+I',
+                    click() {
+                        mainWindow.webContents.openDevTools();
+                    }
+                }
+            ]
+        }];
     }
 
 }
